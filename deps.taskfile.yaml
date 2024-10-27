@@ -1,5 +1,11 @@
 version: 3
 tasks:
+  goreleaser:
+    cmds:
+      - go install 'github.com/goreleaser/goreleaser/v2@latest'
+    status:
+      - which goreleaser
+
   golines:
     cmds:
       - go install 'github.com/segmentio/golines@latest'
@@ -32,6 +38,7 @@ tasks:
 
   default:
     cmds:
+      - task: goreleaser
       - task: golines
       - task: goimports
       - task: staticcheck

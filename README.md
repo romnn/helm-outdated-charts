@@ -3,8 +3,8 @@
 ![Build status](https://github.com/romnn/helm-outdated-charts/actions/workflows/build.yaml/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/romnn/helm-outdated-charts)](https://goreportcard.com/report/github.com/romnn/helm-outdated-charts)
 
-Helm plugin to list and update outdated dependencies of a Helm chart.
-Originally forked and rewritten from [UniKnow/helm-outdated](https://github.com/UniKnow/helm-outdated)
+Helm plugin to list and update outdated dependencies of a Helm chart,
+forked and rewritten from [UniKnow/helm-outdated](https://github.com/UniKnow/helm-outdated).
 
 ##### Features:
 
@@ -15,6 +15,8 @@ Originally forked and rewritten from [UniKnow/helm-outdated](https://github.com/
 
 - Check for outdated image versions of public images in helm templates
 
+### Installation
+
 ```bash
 helm plugin install https://github.com/romnn/helm-outdated-charts --version=main
 
@@ -22,7 +24,7 @@ helm plugin install https://github.com/romnn/helm-outdated-charts --version=main
 helm plugin update outdated
 ```
 
-Alternatively, you can install and use the `helm-outdated` binary directly:
+_Alternatively_, you can install and use the `helm-outdated` binary directly:
 
 ```bash
 go install 'github.com/romnn/helm-outdated-charts/cmd/helm-outdated@main'

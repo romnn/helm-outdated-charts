@@ -31,6 +31,24 @@ tasks:
     cmds:
       - go build 'github.com/romnn/helm-outdated-charts/cmd/helm-outdated' {{.CLI_ARGS}}
 
+  build:release:
+    vars:
+      PLUGIN_VERSION:
+        sh: cat ./plugin.yaml | yq '.version'
+    env:
+      PLUGIN_VERSION: "{{.PLUGIN_VERSION}}"
+    cmds:
+      - goreleaser build --snapshot --clean
+
+  release:
+    vars:
+      PLUGIN_VERSION:
+        sh: cat ./plugin.yaml | yq '.version'
+    env:
+      PLUGIN_VERSION: "{{.PLUGIN_VERSION}}"
+    cmds:
+      - goreleaser release --rm-dist
+
   tidy:
     aliases: [install]
     cmds:

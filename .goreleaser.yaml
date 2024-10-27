@@ -1,17 +1,60 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+env:
+  - PLUGIN_VERSION={{ if index .Env "PLUGIN_VERSION" }}{{ .Env.PLUGIN_VERSION }}{{ else }}{{.Version}}{{ end }}
+
 builds:
-  - main: ./main.go
+  - id: helm-outdated
+    main: ./cmd/helm-outdated
     binary: ./bin/helm-outdated
     env:
       - CGO_ENABLED=0
+    ldflags:
+      # prettier-ignore
+      - >-
+        -s -w
+        -X main.Version={{.Env.PLUGIN_VERSION}}
+        -X main.Commit={{.Commit}}
+        -X main.BuildDate={{.Date}}
+    mod_timestamp: "{{ .CommitTimestamp }}"
     goos:
       - darwin
       - linux
       - windows
     goarch:
       - amd64
+      - arm64
+
+upx:
+  - ids: [helm-outdated]
+    enabled: true
+    goos: [linux]
+    compress: best
+    lzma: true
 
 archives:
   - format: tar.gz
     files:
       - LICENSE
       - plugin.yaml
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  use: github
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+release:
+  draft: false

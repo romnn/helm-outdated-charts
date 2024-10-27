@@ -17,7 +17,7 @@ jobs:
           go-version: "stable"
       - name: Build
         run: task build
-      - name: Release plugin
+      - name: Release
         run: task release
         env:
-          GITHUB_TOKEN: "${{ secrets.GORELEASER_GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
