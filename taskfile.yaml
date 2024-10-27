@@ -1,6 +1,6 @@
 version: 3
 includes:
-  dependencies:install:
+  dev:tools:install:
     taskfile: deps.taskfile.yaml
     dir: ./
 tasks:

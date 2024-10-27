@@ -1,10 +1,10 @@
 name: Release
-
 on:
   push:
     branches:
-      # Push events on main branch
       - main
+    tags:
+      - "*"
 
 jobs:
   release-helm-plugin:
