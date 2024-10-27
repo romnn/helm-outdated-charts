@@ -5,7 +5,7 @@ Helm plugin to list and update outdated dependencies of a Helm chart.
 ## Install
 
 ```
-helm plugin install https://github.com/romnn/helm-outdated --version=master
+helm plugin install https://github.com/romnn/helm-outdated-charts --version=master
 ```
 
 ## Usage

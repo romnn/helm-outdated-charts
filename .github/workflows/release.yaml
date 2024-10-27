@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  push:
+    branches:
+      # Push events on main branch
+      - main
+
+jobs:
+  release-helm-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: arduino/setup-task@v2
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
+      - name: Build
+        run: task build
+      - name: Release plugin
+        run: task release
+        env:
+          GITHUB_TOKEN: "${{ secrets.GORELEASER_GITHUB_TOKEN }}"

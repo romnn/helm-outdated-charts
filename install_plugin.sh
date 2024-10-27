@@ -10,7 +10,7 @@ fi
 version="$(cat plugin.yaml | grep "version" | cut -d '"' -f 2)"
 echo "Downloading and installing helm-outdated v${version} ..."
 
-repo="https://github.com/romnn/helm-outdated"
+repo="https://github.com/romnn/helm-outdated-charts"
 
 url=""
 if [ "$(uname)" = "Darwin" ]; then

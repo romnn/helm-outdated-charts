@@ -11,21 +11,25 @@ tasks:
   run:race:
     dir: "{{.USER_WORKING_DIR}}" # allow user to pass relative paths as arguments
     cmds:
-      - go run -race 'github.com/romnn/helm-outdated' {{.CLI_ARGS}}
+      - go run -race 'github.com/romnn/helm-outdated-charts/cmd/helm-outdated' {{.CLI_ARGS}}
 
   run:
     interactive: true
     dir: "{{.USER_WORKING_DIR}}" # allow user to pass relative paths as arguments
     cmds:
-      - go run 'github.com/romnn/helm-outdated' {{.CLI_ARGS}}
+      - go run 'github.com/romnn/helm-outdated-charts/cmd/helm-outdated' {{.CLI_ARGS}}
 
   build:race:
     cmds:
-      - go build -race 'github.com/romnn/helm-outdated' {{.CLI_ARGS}}
+      - go build -race ./... {{.CLI_ARGS}}
 
   build:
     cmds:
-      - go build 'github.com/romnn/helm-outdated' {{.CLI_ARGS}}
+      - go build ./... {{.CLI_ARGS}}
+
+  build:executable:
+    cmds:
+      - go build 'github.com/romnn/helm-outdated-charts/cmd/helm-outdated' {{.CLI_ARGS}}
 
   tidy:
     aliases: [install]

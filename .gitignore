@@ -4,6 +4,7 @@
 
 # binary
 /helm-outdated
+/helm-outdated-charts
 
 tmp/**
 bin/**

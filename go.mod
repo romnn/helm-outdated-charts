@@ -1,4 +1,4 @@
-module github.com/romnn/helm-outdated
+module github.com/romnn/helm-outdated-charts
 
 go 1.23
 
