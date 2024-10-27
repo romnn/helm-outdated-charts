@@ -1,0 +1,13 @@
+.DS_Store
+
+.idea/
+
+# binary
+/helm-outdated
+
+tmp/**
+bin/**
+dist/**
+vendor/**
+pkg/helm/fixtures/*yaml
+releases/**
