@@ -1,0 +1,35 @@
+name: lint
+on:
+  push: {}
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+  schedule:
+    # 8AM first day of the month in JAN and JUNE to keep workflow badges up-to-date
+    - cron: "0 8 1 1,6 *"
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
+      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
+      - run: task dev:tools:install
+      - name: Lint
+        run: task lint
+
+  spellcheck:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
+      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
+      - run: task dev:tools:install
+      - name: Lint
+        run: task spellcheck

@@ -38,13 +38,13 @@ func (f *Filter) FilterDependencies(
 		keep := true
 
 		// Filter by repositories.
-		if f.Repositories != nil && len(f.Repositories) > 0 &&
+		if len(f.Repositories) > 0 &&
 			!stringSliceContains(f.Repositories, dep.Repository) {
 			keep = false
 		}
 
 		// Filter by dependency name.
-		if f.DependencyNames != nil && len(f.DependencyNames) > 0 &&
+		if len(f.DependencyNames) > 0 &&
 			!stringSliceContains(f.DependencyNames, dep.Name) {
 			keep = false
 		}

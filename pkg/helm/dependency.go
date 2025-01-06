@@ -118,7 +118,7 @@ func UpdateDependencies(chartPath string, reqsToUpdate []*Result, indent int) er
 
 	for _, newDep := range reqsToUpdate {
 		for _, oldDep := range reqs {
-			if newDep.Name == oldDep.Name && newDep.Repository == newDep.Repository {
+			if newDep.Name == oldDep.Name && newDep.Repository == oldDep.Repository {
 				log.Debug(
 					"Updating dependency " + oldDep.Name + " from " + oldDep.Version + " in " + newDep.LatestVersion.String(),
 				)

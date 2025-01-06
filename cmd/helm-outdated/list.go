@@ -54,7 +54,7 @@ func newListOutdatedDependenciesCmd() *cobra.Command {
 			l.chartPath = path
 
 			if debug, err := cmd.Flags().GetBool("debug"); err == nil {
-				if debug == true {
+				if debug {
 					log.SetLevel(log.DebugLevel)
 				} else {
 					log.SetLevel(log.InfoLevel)

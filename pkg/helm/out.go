@@ -38,8 +38,7 @@ import (
 // Requirements are charts upon which this chart depends. This expresses
 // developer intent.
 type Requirements struct {
-	Dependencies []*chart.Dependency `json:"dependencies,flow,inline"`
-	test         int
+	Dependencies []*chart.Dependency `json:"dependencies,inline"`
 }
 
 func toYamlWithIndent(in interface{}, indent int) ([]byte, error) {

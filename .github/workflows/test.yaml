@@ -1,4 +1,4 @@
-name: build
+name: test
 on:
   push: {}
   pull_request:
@@ -8,8 +8,8 @@ on:
     - cron: "0 8 1 1,6 *"
 
 jobs:
-  build-helm-plugin:
-    runs-on: ubuntu-latest
+  lint:
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
@@ -17,5 +17,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: "stable"
-      - name: Build
-        run: task build
+      - run: task dependencies:install
+      - name: Test
+        run: task test

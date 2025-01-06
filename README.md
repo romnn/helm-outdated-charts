@@ -1,6 +1,7 @@
 ## helm-outdated
 
 ![Build status](https://github.com/romnn/helm-outdated-charts/actions/workflows/build.yaml/badge.svg)
+![Test status](https://github.com/romnn/helm-outdated-charts/actions/workflows/test.yaml/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/romnn/helm-outdated-charts)](https://goreportcard.com/report/github.com/romnn/helm-outdated-charts)
 
 Helm plugin to list and update outdated dependencies of a Helm chart,

@@ -36,6 +36,12 @@ tasks:
     status:
       - which richgo
 
+  typos:brew:
+    cmds:
+      - brew install typos
+    status:
+      - which typos
+
   default:
     cmds:
       - task: goreleaser
@@ -44,3 +50,4 @@ tasks:
       - task: staticcheck
       - task: golangci-lint
       - task: richgo
+      - task: typos:brew

@@ -55,7 +55,7 @@ func normalizeString(theString string) string {
 func getChartVersion(c *chart.Chart) (*semver.Version, error) {
 	m := c.Metadata
 	if m == nil {
-		return nil, errors.New("chart has no metdata")
+		return nil, errors.New("chart has no metadata")
 	}
 
 	v := m.Version

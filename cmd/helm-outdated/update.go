@@ -48,7 +48,7 @@ func newUpdateOutdatedDependenciesCmd() *cobra.Command {
 		SilenceUsage: true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if debug, err := cmd.Flags().GetBool("debug"); err == nil {
-				if debug == true {
+				if debug {
 					log.SetLevel(log.DebugLevel)
 				} else {
 					log.SetLevel(log.InfoLevel)

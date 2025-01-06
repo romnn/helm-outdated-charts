@@ -9,29 +9,36 @@ tasks:
       - task: run
 
   run:race:
+    desc: "run helm-outdated with race detection"
     dir: "{{.USER_WORKING_DIR}}" # allow user to pass relative paths as arguments
     cmds:
       - go run -race 'github.com/romnn/helm-outdated-charts/cmd/helm-outdated' {{.CLI_ARGS}}
 
   run:
+    desc: "run helm-outdated"
     interactive: true
     dir: "{{.USER_WORKING_DIR}}" # allow user to pass relative paths as arguments
     cmds:
       - go run 'github.com/romnn/helm-outdated-charts/cmd/helm-outdated' {{.CLI_ARGS}}
 
   build:race:
+    desc: "build helm-outdated with race detection"
     cmds:
       - go build -race ./... {{.CLI_ARGS}}
 
   build:
+    desc: "build helm-outdated"
     cmds:
       - go build ./... {{.CLI_ARGS}}
 
   build:executable:
+    desc: "build helm-outdated executable"
+    aliases: ["build:binary"]
     cmds:
       - go build 'github.com/romnn/helm-outdated-charts/cmd/helm-outdated' {{.CLI_ARGS}}
 
   build:release:
+    desc: "build helm-outdated in release mode using goreleaser"
     vars:
       PLUGIN_VERSION:
         sh: cat ./plugin.yaml | yq '.version'
@@ -41,6 +48,7 @@ tasks:
       - goreleaser build --snapshot --clean
 
   release:
+    desc: "release helm-outdated using goreleaser"
     vars:
       PLUGIN_VERSION:
         sh: cat ./plugin.yaml | yq '.version'
@@ -50,18 +58,33 @@ tasks:
       - goreleaser release --rm-dist
 
   tidy:
+    desc: "tidy golang modules"
     aliases: [install]
     cmds:
       - go get ./...
       - go mod tidy
 
+  update:
+    desc: "update golang dependencies"
+    cmds:
+      - go get -u ./...
+      - cmd: tidy
+
+  typos:
+    desc: "spell check source files"
+    aliases: [spellcheck]
+    cmds:
+      - typos
+
   format:
+    desc: "format sources"
     cmds:
       # NOTE: golines already will attempt to use goimports and otherwise gofmt as base formatters
       # similar to default ruff settings: linewidth=88 tab=4
       - golines -m 88 -t 4 -w ./ {{.CLI_ARGS}}
 
   lint:
+    desc: "lint"
     aliases: [check]
     cmds:
       - go vet ./... {{.CLI_ARGS}}
@@ -69,6 +92,7 @@ tasks:
       - golangci-lint run ./... {{.CLI_ARGS}}
 
   test:
+    desc: "test with race detection"
     aliases: ["test:race"]
     cmds:
       - richgo test ./... -race {{.CLI_ARGS}}
