@@ -1,8 +1,6 @@
 name: release
 on:
   push:
-    branches:
-      - main
     tags:
       - "*"
 
@@ -12,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: arduino/setup-task@v2
+      - uses: Homebrew/actions/setup-homebrew@master
       - uses: actions/setup-go@v5
         with:
           go-version: "stable"

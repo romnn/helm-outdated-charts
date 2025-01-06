@@ -8,7 +8,7 @@ on:
     - cron: "0 8 1 1,6 *"
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -17,6 +17,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: "stable"
-      - run: task dependencies:install
+      - run: task dev:tools:install
       - name: Test
         run: task test
