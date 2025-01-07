@@ -6,21 +6,33 @@ tasks:
     status:
       - which goreleaser
 
+  goreleaser:brew:
+    cmds:
+      - brew install goreleaser
+    status:
+      - which goreleaser
+
   golines:
     cmds:
       - go install 'github.com/segmentio/golines@latest'
     status:
       - which golines
 
-  goimports:
+  golines:brew:
     cmds:
-      - go install 'golang.org/x/tools/cmd/goimports@latest'
+      - brew install golines
     status:
-      - which goimports
+      - which golines
 
   staticcheck:
     cmds:
       - go install 'honnef.co/go/tools/cmd/staticcheck@latest'
+    status:
+      - which staticcheck
+
+  staticcheck:brew:
+    cmds:
+      - brew install staticcheck
     status:
       - which staticcheck
 
@@ -30,9 +42,21 @@ tasks:
     status:
       - which golangci-lint
 
+  golangci-lint:brew:
+    cmds:
+      - brew install golangci-lint
+    status:
+      - which golangci-lint
+
   richgo:
     cmds:
       - go install 'github.com/kyoh86/richgo@latest'
+    status:
+      - which richgo
+
+  richgo:brew:
+    cmds:
+      - brew install richgo
     status:
       - which richgo
 
@@ -42,12 +66,15 @@ tasks:
     status:
       - which typos
 
+  all:brew:
+    cmds:
+      - task: goreleaser:brew
+      - task: golines:brew
+      - task: staticcheck:brew
+      - task: golangci-lint:brew
+      - task: richgo:brew
+      - task: typos:brew
+
   default:
     cmds:
-      - task: goreleaser
-      - task: golines
-      - task: goimports
-      - task: staticcheck
-      - task: golangci-lint
-      - task: richgo
-      - task: typos:brew
+      - task: all:brew
