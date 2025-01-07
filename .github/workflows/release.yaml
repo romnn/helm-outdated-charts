@@ -15,6 +15,7 @@ jobs:
         with:
           go-version: "stable"
       - run: task dev:tools:install
+      - run: brew install yq
       - name: Build
         run: task build
       - name: Release
