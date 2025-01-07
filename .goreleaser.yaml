@@ -53,6 +53,7 @@ changelog:
   use: github
   filters:
     exclude:
+      - "^ci:"
       - "^docs:"
       - "^test:"
 

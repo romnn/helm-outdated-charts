@@ -68,7 +68,7 @@ tasks:
     desc: "update golang dependencies"
     cmds:
       - go get -u ./...
-      - cmd: tidy
+      - task: tidy
 
   typos:
     desc: "spell check source files"

@@ -44,7 +44,7 @@ To use the provided tasks in `taskfile.yaml`, install [task](https://taskfile.de
 ```bash
 # view all available tasks
 task --list-all
-# install development tools
+# install development tools (requires brew/linuxbrew)
 task dev:tools:install
 ```
 
