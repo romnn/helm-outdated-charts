@@ -55,7 +55,7 @@ tasks:
     env:
       PLUGIN_VERSION: "{{.PLUGIN_VERSION}}"
     cmds:
-      - goreleaser release --rm-dist
+      - goreleaser release --clean
 
   tidy:
     desc: "tidy golang modules"
