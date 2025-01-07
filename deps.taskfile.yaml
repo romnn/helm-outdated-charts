@@ -62,7 +62,7 @@ tasks:
 
   typos:brew:
     cmds:
-      - brew install typos
+      - brew install typos-cli
     status:
       - which typos
 
