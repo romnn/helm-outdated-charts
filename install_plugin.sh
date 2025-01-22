@@ -43,5 +43,4 @@ else
     wget -q "${URL}" -O "releases/v${VERSION}.tar.gz"
 fi
 tar xzf "releases/v${VERSION}.tar.gz" -C "releases/v${VERSION}"
-mv "releases/v${VERSION}/bin/${BIN}" "bin/${BIN}" || \
-    mv "releases/v${VERSION}/bin/${BIN}.exe" "bin/${BIN}"
+mv "releases/v${VERSION}/bin/helm-outdated" "bin/helm-outdated"
