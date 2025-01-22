@@ -7,31 +7,41 @@ if [ -n "${HELM_OUTDATED_DEPENDENCIES_PLUGIN_NO_INSTALL_HOOK}" ]; then
     exit 0
 fi
 
-version="$(cat plugin.yaml | grep "version" | cut -d '"' -f 2)"
-echo "Downloading and installing helm-outdated v${version} ..."
+VERSION="$(cat plugin.yaml | grep "version" | cut -d '"' -f 2)"
+echo "Downloading and installing helm-outdated v${VERSION} ..."
 
-repo="https://github.com/romnn/helm-outdated-charts"
+REPO="https://github.com/romnn/helm-outdated-charts"
+BIN=helm-outdated-charts
 
-url=""
+URL=""
 if [ "$(uname)" = "Darwin" ]; then
-    url="${repo}/releases/download/${version}/helm-outdated_${version}_darwin_amd64.tar.gz"
+    if [ "$(uname -m)" = "x86_64" ]; then
+        URL="${REPO}/releases/download/v${VERSION}/${BIN}_${VERSION}_darwin_amd64.tar.gz"
+    else
+        URL="${REPO}/releases/download/v${VERSION}/${BIN}_${VERSION}_darwin_arm64.tar.gz"
+    fi
 elif [ "$(uname)" = "Linux" ] ; then
-    url="${repo}/releases/download/${version}/helm-outdated_${version}_linux_amd64.tar.gz"
+    if [ "$(uname -m)" = "x86_64" ]; then
+        URL="${REPO}/releases/download/v${VERSION}/${BIN}_${VERSION}_linux_amd64.tar.gz"
+    else
+        URL="${REPO}/releases/download/v${VERSION}/${BIN}_${VERSION}_linux_arm64.tar.gz"
+    fi
 else
-    url="${repo}/releases/download/${version}/helm-outdated_${version}_windows_amd64.tar.gz"
+    echo "${BIN} does not support windows"
+    exit 1
 fi
 
-echo $url
+echo $URL
 
 mkdir -p "bin"
-mkdir -p "releases/v${version}"
+mkdir -p "releases/v${VERSION}"
 
 # Download with curl if possible.
 if [ -x "$(which curl 2>/dev/null)" ]; then
-    curl -sSL "${url}" -o "releases/v${version}.tar.gz"
+    curl -sSL "${URL}" -o "releases/v${VERSION}.tar.gz"
 else
-    wget -q "${url}" -O "releases/v${version}.tar.gz"
+    wget -q "${URL}" -O "releases/v${VERSION}.tar.gz"
 fi
-tar xzf "releases/v${version}.tar.gz" -C "releases/v${version}"
-mv "releases/v${version}/bin/helm-outdated" "bin/helm-outdated" || \
-    mv "releases/v${version}/bin/helm-outdated.exe" "bin/helm-outdated"
+tar xzf "releases/v${VERSION}.tar.gz" -C "releases/v${VERSION}"
+mv "releases/v${VERSION}/bin/${BIN}" "bin/${BIN}" || \
+    mv "releases/v${VERSION}/bin/${BIN}.exe" "bin/${BIN}"
